@@ -13,6 +13,13 @@
 		72FBC1AF1A2DA1EB00609E4C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72FBC1AE1A2DA1EB00609E4C /* Images.xcassets */; };
 		72FBC1B21A2DA1EB00609E4C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72FBC1B01A2DA1EB00609E4C /* LaunchScreen.xib */; };
 		72FBC1BE1A2DA1EB00609E4C /* NetWorthTodayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FBC1BD1A2DA1EB00609E4C /* NetWorthTodayTests.swift */; };
+		72FBC1CB1A2DA40D00609E4C /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72FBC1CA1A2DA40D00609E4C /* CouchbaseLite.framework */; };
+		72FBC1CD1A2DA46900609E4C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72FBC1CC1A2DA46900609E4C /* CFNetwork.framework */; };
+		72FBC1CF1A2DA47100609E4C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72FBC1CE1A2DA47100609E4C /* Security.framework */; };
+		72FBC1D11A2DA47D00609E4C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72FBC1D01A2DA47D00609E4C /* SystemConfiguration.framework */; };
+		72FBC1D31A2DA48D00609E4C /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 72FBC1D21A2DA48D00609E4C /* libsqlite3.dylib */; };
+		72FBC1D71A2DA4A800609E4C /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 72FBC1D61A2DA4A800609E4C /* libz.dylib */; };
+		72FBC1D91A2DA55200609E4C /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72FBC1D81A2DA55200609E4C /* FacebookSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +43,15 @@
 		72FBC1B71A2DA1EB00609E4C /* NetWorthTodayTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetWorthTodayTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		72FBC1BC1A2DA1EB00609E4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		72FBC1BD1A2DA1EB00609E4C /* NetWorthTodayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetWorthTodayTests.swift; sourceTree = "<group>"; };
+		72FBC1CA1A2DA40D00609E4C /* CouchbaseLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CouchbaseLite.framework; path = Frameworks/CouchbaseLite.framework; sourceTree = "<group>"; };
+		72FBC1CC1A2DA46900609E4C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		72FBC1CE1A2DA47100609E4C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		72FBC1D01A2DA47D00609E4C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		72FBC1D21A2DA48D00609E4C /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		72FBC1D41A2DA49600609E4C /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = usr/lib/libz.1.dylib; sourceTree = SDKROOT; };
+		72FBC1D61A2DA4A800609E4C /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		72FBC1D81A2DA55200609E4C /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		72FBC1DB1A2DA62C00609E4C /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +59,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72FBC1D71A2DA4A800609E4C /* libz.dylib in Frameworks */,
+				72FBC1D31A2DA48D00609E4C /* libsqlite3.dylib in Frameworks */,
+				72FBC1D11A2DA47D00609E4C /* SystemConfiguration.framework in Frameworks */,
+				72FBC1CF1A2DA47100609E4C /* Security.framework in Frameworks */,
+				72FBC1CD1A2DA46900609E4C /* CFNetwork.framework in Frameworks */,
+				72FBC1CB1A2DA40D00609E4C /* CouchbaseLite.framework in Frameworks */,
+				72FBC1D91A2DA55200609E4C /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +85,7 @@
 				72FBC1A41A2DA1EB00609E4C /* NetWorthToday */,
 				72FBC1BA1A2DA1EB00609E4C /* NetWorthTodayTests */,
 				72FBC1A31A2DA1EB00609E4C /* Products */,
+				72FBC1C71A2DA39C00609E4C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -80,6 +104,7 @@
 				72FBC1A71A2DA1EB00609E4C /* AppDelegate.swift */,
 				72FBC1A91A2DA1EB00609E4C /* ViewController.swift */,
 				72FBC1AB1A2DA1EB00609E4C /* Main.storyboard */,
+				72FBC1DB1A2DA62C00609E4C /* Bridging-Header.h */,
 				72FBC1AE1A2DA1EB00609E4C /* Images.xcassets */,
 				72FBC1B01A2DA1EB00609E4C /* LaunchScreen.xib */,
 				72FBC1A51A2DA1EB00609E4C /* Supporting Files */,
@@ -110,6 +135,21 @@
 				72FBC1BC1A2DA1EB00609E4C /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		72FBC1C71A2DA39C00609E4C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				72FBC1D61A2DA4A800609E4C /* libz.dylib */,
+				72FBC1D41A2DA49600609E4C /* libz.1.dylib */,
+				72FBC1D21A2DA48D00609E4C /* libsqlite3.dylib */,
+				72FBC1D81A2DA55200609E4C /* FacebookSDK.framework */,
+				72FBC1D01A2DA47D00609E4C /* SystemConfiguration.framework */,
+				72FBC1CE1A2DA47100609E4C /* Security.framework */,
+				72FBC1CC1A2DA46900609E4C /* CFNetwork.framework */,
+				72FBC1CA1A2DA40D00609E4C /* CouchbaseLite.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,6 +201,7 @@
 				TargetAttributes = {
 					72FBC1A11A2DA1EB00609E4C = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = HGXW6XTDST;
 					};
 					72FBC1B61A2DA1EB00609E4C = {
 						CreatedOnToolsVersion = 6.1;
@@ -338,8 +379,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Frameworks",
+					/Users/johnathangrayson/Documents/FacebookSDK,
+				);
 				INFOPLIST_FILE = NetWorthToday/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -348,8 +397,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Frameworks",
+					/Users/johnathangrayson/Documents/FacebookSDK,
+				);
 				INFOPLIST_FILE = NetWorthToday/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
