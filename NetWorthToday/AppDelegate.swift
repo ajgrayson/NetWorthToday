@@ -8,14 +8,24 @@
 
 import UIKit
 
+private let kDatabaseName = "networthtoday"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    let database: CBLDatabase!
 
+    override init() {
+        database = CBLManager.sharedInstance().databaseNamed(kDatabaseName, error: nil)
+    }
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        if database == nil {
+            return false
+        }
         return true
     }
 

@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		72470FAF1A3382EC0083E01B /* AssetCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72470FA91A3382EC0083E01B /* AssetCategory.swift */; };
+		72470FB01A3382EC0083E01B /* AssetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72470FAA1A3382EC0083E01B /* AssetTableViewController.swift */; };
+		72470FB11A3382EC0083E01B /* ItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72470FAB1A3382EC0083E01B /* ItemType.swift */; };
+		72470FB21A3382EC0083E01B /* LiabilityCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72470FAC1A3382EC0083E01B /* LiabilityCategory.swift */; };
+		72470FB31A3382EC0083E01B /* LiabilityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72470FAD1A3382EC0083E01B /* LiabilityTableViewController.swift */; };
+		72470FB41A3382EC0083E01B /* MemberOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72470FAE1A3382EC0083E01B /* MemberOverviewViewController.swift */; };
 		72FBC1A81A2DA1EB00609E4C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FBC1A71A2DA1EB00609E4C /* AppDelegate.swift */; };
-		72FBC1AA1A2DA1EB00609E4C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FBC1A91A2DA1EB00609E4C /* ViewController.swift */; };
 		72FBC1AD1A2DA1EB00609E4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72FBC1AB1A2DA1EB00609E4C /* Main.storyboard */; };
 		72FBC1AF1A2DA1EB00609E4C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72FBC1AE1A2DA1EB00609E4C /* Images.xcassets */; };
 		72FBC1B21A2DA1EB00609E4C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72FBC1B01A2DA1EB00609E4C /* LaunchScreen.xib */; };
@@ -33,10 +38,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		72470FA91A3382EC0083E01B /* AssetCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetCategory.swift; sourceTree = "<group>"; };
+		72470FAA1A3382EC0083E01B /* AssetTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetTableViewController.swift; sourceTree = "<group>"; };
+		72470FAB1A3382EC0083E01B /* ItemType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemType.swift; sourceTree = "<group>"; };
+		72470FAC1A3382EC0083E01B /* LiabilityCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiabilityCategory.swift; sourceTree = "<group>"; };
+		72470FAD1A3382EC0083E01B /* LiabilityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiabilityTableViewController.swift; sourceTree = "<group>"; };
+		72470FAE1A3382EC0083E01B /* MemberOverviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemberOverviewViewController.swift; sourceTree = "<group>"; };
 		72FBC1A21A2DA1EB00609E4C /* NetWorthToday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetWorthToday.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72FBC1A61A2DA1EB00609E4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		72FBC1A71A2DA1EB00609E4C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		72FBC1A91A2DA1EB00609E4C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		72FBC1AC1A2DA1EB00609E4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		72FBC1AE1A2DA1EB00609E4C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		72FBC1B11A2DA1EB00609E4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -101,8 +111,13 @@
 		72FBC1A41A2DA1EB00609E4C /* NetWorthToday */ = {
 			isa = PBXGroup;
 			children = (
+				72470FA91A3382EC0083E01B /* AssetCategory.swift */,
+				72470FAA1A3382EC0083E01B /* AssetTableViewController.swift */,
+				72470FAB1A3382EC0083E01B /* ItemType.swift */,
+				72470FAC1A3382EC0083E01B /* LiabilityCategory.swift */,
+				72470FAD1A3382EC0083E01B /* LiabilityTableViewController.swift */,
+				72470FAE1A3382EC0083E01B /* MemberOverviewViewController.swift */,
 				72FBC1A71A2DA1EB00609E4C /* AppDelegate.swift */,
-				72FBC1A91A2DA1EB00609E4C /* ViewController.swift */,
 				72FBC1AB1A2DA1EB00609E4C /* Main.storyboard */,
 				72FBC1DB1A2DA62C00609E4C /* Bridging-Header.h */,
 				72FBC1AE1A2DA1EB00609E4C /* Images.xcassets */,
@@ -253,8 +268,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				72FBC1AA1A2DA1EB00609E4C /* ViewController.swift in Sources */,
+				72470FB31A3382EC0083E01B /* LiabilityTableViewController.swift in Sources */,
+				72470FB01A3382EC0083E01B /* AssetTableViewController.swift in Sources */,
+				72470FB21A3382EC0083E01B /* LiabilityCategory.swift in Sources */,
+				72470FB11A3382EC0083E01B /* ItemType.swift in Sources */,
+				72470FAF1A3382EC0083E01B /* AssetCategory.swift in Sources */,
 				72FBC1A81A2DA1EB00609E4C /* AppDelegate.swift in Sources */,
+				72470FB41A3382EC0083E01B /* MemberOverviewViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,6 +410,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "NetWorthToday/Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -408,6 +429,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "NetWorthToday/Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -464,6 +486,7 @@
 				72FBC1C31A2DA1EB00609E4C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		72FBC1C41A2DA1EB00609E4C /* Build configuration list for PBXNativeTarget "NetWorthTodayTests" */ = {
 			isa = XCConfigurationList;
@@ -472,6 +495,7 @@
 				72FBC1C61A2DA1EB00609E4C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
