@@ -26,7 +26,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="5ZG-vm-at5" kind="show" id="Pr7-21-GiA"/>
+                                    <segue destination="5ZG-vm-at5" kind="show" identifier="manageAssets" id="Pr7-21-GiA"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Assets" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gn9-fK-02T">
@@ -56,7 +56,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="5ZG-vm-at5" kind="show" id="awI-Rr-roc"/>
+                                    <segue destination="5ZG-vm-at5" kind="show" identifier="manageLiabilities" id="awI-Rr-roc"/>
                                 </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qt9-aD-z2S">
@@ -146,10 +146,10 @@
             </objects>
             <point key="canvasLocation" x="701" y="783"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Item List Table View Controller-->
         <scene sceneID="UPw-By-j32">
             <objects>
-                <tableViewController id="zzX-YO-ZNw" sceneMemberID="viewController">
+                <tableViewController id="zzX-YO-ZNw" customClass="ItemListTableViewController" customModule="NetWorthToday" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="O4m-lI-cCV">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -170,7 +170,7 @@
                             <outlet property="delegate" destination="zzX-YO-ZNw" id="MVo-s1-AfP"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="dmO-MK-agz"/>
+                    <navigationItem key="navigationItem" id="dmO-MK-agz"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HzL-i9-0HH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
