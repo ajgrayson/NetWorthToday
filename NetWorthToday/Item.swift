@@ -14,4 +14,8 @@ class Item : CBLModel {
     
     @NSManaged var category : String?
     
+    @NSManaged var amount : NSNumber?
+    
+    @NSManaged var itemType : String?
+    
 }

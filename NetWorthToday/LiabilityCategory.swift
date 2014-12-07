@@ -24,4 +24,26 @@ class LiabilityCategory {
         
     }
     
+    class func getIndexFor(asset : String) -> Int {
+        
+        var index : Int = 0
+        for cat in [ShortTerm, LongTerm] {
+            if (asset == cat.value) {
+                return index
+            }
+            index++
+        }
+        
+        return -1
+    }
+    
+    class func getCategoryForValue(asset: String?) -> (name: String, value: String)? {
+        for cat in [ShortTerm, LongTerm] {
+            if(asset == cat.value) {
+                return cat
+            }
+        }
+        return nil
+    }
+    
 }

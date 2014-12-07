@@ -10,6 +10,14 @@ import UIKit
 
 class MemberOverviewViewController: UIViewController {
 
+    var database : CBLDatabase!
+    
+    var liveQuery : CBLLiveQuery!
+    
+    let currencyFormatter = NSNumberFormatter()
+    
+    @IBOutlet weak var totalTextField: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,6 +29,18 @@ class MemberOverviewViewController: UIViewController {
         var lvc : ItemCategoryTableViewController = self.childViewControllers[1] as ItemCategoryTableViewController
         lvc.itemType = ItemType.Liability
         
+        currencyFormatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.setupDataSource()
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        self.liveQuery.removeObserver(self, forKeyPath: "rows")
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,6 +61,72 @@ class MemberOverviewViewController: UIViewController {
         } else {
             lvc.viewItemType = ItemType.Liability
         }
+    }
+    
+    // MARK : - DataSource
+    
+    func setupDataSource() {
+        
+        setupDatabase()
+        
+        self.liveQuery = database.viewNamed("items").createQuery().asLiveQuery();
+        self.liveQuery.descending = false
+        self.liveQuery.addObserver(self, forKeyPath: "rows", options: nil, context: nil)
+        
+    }
+    
+    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject,
+        change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+            if object as? NSObject == liveQuery {
+                self.displayData(liveQuery.rows)
+            }
+    }
+    
+    func setupDatabase() {
+        self.database = appDelegate.database
+        
+        self.database.viewNamed("items").setMapBlock({
+            (doc, emit) in
+            
+                let type : String? = doc["type"] as String?
+                if (type == "item") {
+                    
+                    if let nameObj: AnyObject = doc["name"] {
+                        
+                        if let name = nameObj as? String {
+                            emit(name, doc)
+                        }
+                        
+                    }
+                    
+                }
+            
+            }, version: "2")
+    }
+    
+    func displayData(rows : CBLQueryEnumerator) {
+        var total = 0
+        
+        for i in 1...rows.count-1 {
+            var row = rows.rowAtIndex(i)
+            
+            var doc : CBLDocument = row.document
+            
+            var item : Item = Item(forDocument: doc)
+            
+            if(ItemType(rawValue: item.itemType!) == ItemType.Asset) {
+                total = total + (item.amount != nil ? item.amount! : 0).integerValue
+            } else {
+                total = total - (item.amount != nil ? item.amount! : 0).integerValue
+            }
+
+        }
+        
+        self.totalTextField.text = currencyFormatter.stringFromNumber(total)
+    }
+    
+    var appDelegate : AppDelegate {
+        return UIApplication.sharedApplication().delegate as AppDelegate
     }
 
 }

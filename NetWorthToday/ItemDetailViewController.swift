@@ -13,18 +13,26 @@ class ItemDetailViewController: UIViewController, UIPickerViewDelegate {
     @IBOutlet weak var doneButton: UIBarButtonItem!
     @IBOutlet weak var categoryPicker: UIPickerView!
     @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var valueTextField: UITextField!
     
     var item : Item!
     
     var itemType : ItemType!
     
-    var selectedCategoryIndex : Int!
+    var selectedCategoryIndex : Int = 0
+    
+    //let currencyFormatter = NSNumberFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.categoryPicker.delegate = self;
+        
+        //self.valueTextField.addTarget(self, action: "amountTextFieldDidChange:", forControlEvents: UIControlEvents.EditingChanged)
+        
+        //currencyFormatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+        //currencyFormatter.currencyCode = NSLocale.currentLocale().displayNameForKey(NSLocaleCurrencySymbol, value: NSLocaleCurrencyCode)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -35,6 +43,20 @@ class ItemDetailViewController: UIViewController, UIPickerViewDelegate {
         } else {
             self.navigationItem.title = item != nil ? "Edit Liability" : "Add Liability"
         }
+        
+        if(self.item != nil) {
+            self.nameTextField.text = self.item.name
+            self.valueTextField.text = self.item.amount?.description
+            
+            if(self.itemType! == ItemType.Asset) {
+                self.categoryPicker.selectRow(AssetCategory.getIndexFor(self.item.category!), inComponent: 0, animated: false)
+            } else {
+                self.categoryPicker.selectRow(LiabilityCategory.getIndexFor(self.item.category!), inComponent: 0, animated: false)
+            }
+            
+        }
+        
+        self.nameTextField.becomeFirstResponder()
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,10 +77,13 @@ class ItemDetailViewController: UIViewController, UIPickerViewDelegate {
         if self.nameTextField.text.utf16Count > 0 {
             if(self.item == nil) {
                 self.item = Item(newDocumentInDatabase: self.appDelegate.database)
+                self.item.type = "item"
+                self.item.itemType = self.itemType.rawValue
             }
             
             // set the name
             self.item?.name = self.nameTextField.text
+            self.item?.amount = (self.valueTextField.text as NSString).floatValue
             
             // set the category
             if(self.itemType! == ItemType.Asset) {
@@ -88,6 +113,29 @@ class ItemDetailViewController: UIViewController, UIPickerViewDelegate {
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.selectedCategoryIndex = row
     }
+    
+    // MARK :- Text Fields
+//    
+//    func amountTextFieldDidChange(textField: UITextField) {
+//        updateAmountTextField(self.valueTextField.text)
+//    }
+//    
+//    func updateAmountTextField(amount : String?) {
+//        if(amount == nil) {
+//            return
+//        }
+//        
+//        var text = self.cleanAmount(amount)
+//        
+//        self.valueTextField.text = currencyFormatter.stringFromNumber((text as NSString).doubleValue)
+//    }
+//    
+//    func cleanAmount(text : String?) -> String {
+//        if(text == nil) {
+//            return ""
+//        }
+//        return text!.stringByReplacingOccurrencesOfString(currencyFormatter.currencySymbol!, withString: "").stringByReplacingOccurrencesOfString(currencyFormatter.groupingSeparator, withString: "").stringByReplacingOccurrencesOfString(currencyFormatter.decimalSeparator!, withString: "")
+//    }
     
     // MARK : - App Delegate
     

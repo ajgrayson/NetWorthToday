@@ -15,6 +15,8 @@
 		72470FB61A33C3D70083E01B /* ItemListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72470FB51A33C3D70083E01B /* ItemListTableViewController.swift */; };
 		72470FB81A33D8540083E01B /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72470FB71A33D8540083E01B /* ItemDetailViewController.swift */; };
 		72470FBB1A33D89C0083E01B /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72470FBA1A33D89C0083E01B /* Item.swift */; };
+		72470FBE1A33E5C70083E01B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72470FBD1A33E5C70083E01B /* Constants.swift */; };
+		72470FC01A33FDC40083E01B /* ItemListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72470FBF1A33FDC40083E01B /* ItemListTableViewCell.swift */; };
 		72FBC1A81A2DA1EB00609E4C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72FBC1A71A2DA1EB00609E4C /* AppDelegate.swift */; };
 		72FBC1AD1A2DA1EB00609E4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72FBC1AB1A2DA1EB00609E4C /* Main.storyboard */; };
 		72FBC1AF1A2DA1EB00609E4C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72FBC1AE1A2DA1EB00609E4C /* Images.xcassets */; };
@@ -48,6 +50,9 @@
 		72470FB51A33C3D70083E01B /* ItemListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemListTableViewController.swift; sourceTree = "<group>"; };
 		72470FB71A33D8540083E01B /* ItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		72470FBA1A33D89C0083E01B /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		72470FBC1A33E27B0083E01B /* ItemListTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItemListTableViewController.h; sourceTree = "<group>"; };
+		72470FBD1A33E5C70083E01B /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		72470FBF1A33FDC40083E01B /* ItemListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemListTableViewCell.swift; sourceTree = "<group>"; };
 		72FBC1A21A2DA1EB00609E4C /* NetWorthToday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetWorthToday.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72FBC1A61A2DA1EB00609E4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		72FBC1A71A2DA1EB00609E4C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -126,7 +131,9 @@
 				72470FB91A33D88F0083E01B /* Models */,
 				72FBC1A71A2DA1EB00609E4C /* AppDelegate.swift */,
 				72FBC1AB1A2DA1EB00609E4C /* Main.storyboard */,
+				72470FBC1A33E27B0083E01B /* ItemListTableViewController.h */,
 				72470FB51A33C3D70083E01B /* ItemListTableViewController.swift */,
+				72470FBF1A33FDC40083E01B /* ItemListTableViewCell.swift */,
 				72470FB71A33D8540083E01B /* ItemDetailViewController.swift */,
 				72470FAE1A3382EC0083E01B /* MemberOverviewViewController.swift */,
 				72470FAA1A3382EC0083E01B /* ItemCategoryTableViewController.swift */,
@@ -137,6 +144,7 @@
 				72FBC1AE1A2DA1EB00609E4C /* Images.xcassets */,
 				72FBC1B01A2DA1EB00609E4C /* LaunchScreen.xib */,
 				72FBC1A51A2DA1EB00609E4C /* Supporting Files */,
+				72470FBD1A33E5C70083E01B /* Constants.swift */,
 			);
 			path = NetWorthToday;
 			sourceTree = "<group>";
@@ -287,8 +295,10 @@
 				72470FB61A33C3D70083E01B /* ItemListTableViewController.swift in Sources */,
 				72470FB21A3382EC0083E01B /* LiabilityCategory.swift in Sources */,
 				72470FB11A3382EC0083E01B /* ItemType.swift in Sources */,
+				72470FBE1A33E5C70083E01B /* Constants.swift in Sources */,
 				72470FB81A33D8540083E01B /* ItemDetailViewController.swift in Sources */,
 				72470FAF1A3382EC0083E01B /* AssetCategory.swift in Sources */,
+				72470FC01A33FDC40083E01B /* ItemListTableViewCell.swift in Sources */,
 				72FBC1A81A2DA1EB00609E4C /* AppDelegate.swift in Sources */,
 				72470FB41A3382EC0083E01B /* MemberOverviewViewController.swift in Sources */,
 			);

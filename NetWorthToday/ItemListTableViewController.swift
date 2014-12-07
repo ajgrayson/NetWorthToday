@@ -8,13 +8,15 @@
 
 import UIKit
 
-class ItemListTableViewController: UITableViewController {
+@objc(ItemListTableViewController) class ItemListTableViewController: UITableViewController {
 
     var viewItemType : ItemType!
     
     var database: CBLDatabase!
     
     var dataSource: CBLUITableSource!
+    
+    var liveQuery: CBLLiveQuery!
     
     let assetViewName = "Assets"
     
@@ -28,16 +30,16 @@ class ItemListTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
         
         if(self.viewItemType == ItemType.Asset) {
             self.navigationItem.title = "Assets"
         } else {
             self.navigationItem.title = "Liabilities"
         }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         
         setupDataSource()
     }
@@ -46,6 +48,12 @@ class ItemListTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    deinit {
+        self.liveQuery.removeObserver(self, forKeyPath: "rows")
+    }
+    
+    // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier != "editItem" && segue.identifier != "addItem") {
@@ -69,6 +77,17 @@ class ItemListTableViewController: UITableViewController {
             
         }
     }
+    
+    @IBAction func unwindToList(segue: UIStoryboardSegue) {
+        var source: ItemDetailViewController = segue.sourceViewController as ItemDetailViewController
+        
+        if source.item != nil {
+            var item: Item = source.item!
+            
+            // add it to the database
+            self.saveItem(item)
+        }
+    }
 
     // MARK: - Table view data source
 
@@ -86,40 +105,68 @@ class ItemListTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell : UITableViewCell = tableView.dequeueReusableCellWithIdentifier("ItemCell", forIndexPath: indexPath) as UITableViewCell
+        var cell : ItemListTableViewCell = tableView.dequeueReusableCellWithIdentifier("ItemCell", forIndexPath: indexPath) as ItemListTableViewCell
         
         var row : CBLQueryRow = self.dataSource.rowAtIndexPath(indexPath)
         var doc : CBLDocument = row.document
         
         var item : Item = Item(forDocument: doc)
         
-        cell.textLabel!.text = item.name;
+        cell.nameTextField!.text = item.name;
+        cell.categoryTextField!.text = self.getCategoryDescription(item.category)
+        cell.amountTextField!.text = item.amount?.description
         
         return cell
     }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 50
+    }
+    
+    func getCategoryDescription(category: String?) -> String {
+        if(self.viewItemType == ItemType.Asset) {
+            var cat : (name: String, value: String)? = AssetCategory.getCategoryForValue(category)
+            return cat != nil ? cat!.name : ""
+        }
+        
+        var cat : (name: String, value: String)? = LiabilityCategory.getCategoryForValue(category)
+        return cat != nil ? cat!.name : ""
+    }
+    
+    // MARK: - DataSource
 
+    func reloadData() {
+        self.dataSource.reloadFromQuery()
+        self.tableView.reloadData()
+    }
+    
     func setupDataSource() {
         
-        self.database = appDelegate.database
-        
-        setupDatabaseViews()
+        setupDatabase()
         
         if self.dataSource == nil {
             self.dataSource = CBLUITableSource()
             
-            let query = database.viewNamed(getViewName()).createQuery().asLiveQuery();
-            query.descending = true
+            self.liveQuery = database.viewNamed(getViewName()).createQuery().asLiveQuery();
+            self.liveQuery.descending = false
+            self.liveQuery.addObserver(self, forKeyPath: "rows", options: nil, context: nil)
             
-            self.dataSource.query = query
-            self.dataSource.labelProperty = "name"    // Document property to display in the cell label
+            self.dataSource.query = self.liveQuery
         }
         
-        self.dataSource.reloadFromQuery()
-        
-        self.tableView.reloadData()
+        self.reloadData()
     }
     
-    func setupDatabaseViews() {
+    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject,
+        change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+            if object as? NSObject == liveQuery {
+                self.tableView.reloadData()
+            }
+    }
+    
+    func setupDatabase() {
+        self.database = appDelegate.database
+        
         self.database.viewNamed(assetViewName).setMapBlock({
             (doc, emit) in
             
@@ -173,6 +220,21 @@ class ItemListTableViewController: UITableViewController {
         } else {
             return liabilityViewName
         }
+    }
+    
+    func saveItem(item: Item!) {
+        if(item == nil) {
+            return
+        }
+        
+        var error : NSError?
+        item.save(&error)
+        
+        if(error != nil) {
+            println("Error saving item: " + (error != nil ? error!.description : ""))
+        }
+        
+        self.self.reloadData()
     }
     
     var appDelegate : AppDelegate {
