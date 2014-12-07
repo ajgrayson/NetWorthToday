@@ -166,17 +166,19 @@ class ItemCategoryTableViewController: UITableViewController {
     func updateData(rows : CBLQueryEnumerator) {
         self.initData()
         
-        for i in 0...rows.count-1 {
-            var row = rows.rowAtIndex(i)
-            
-            var doc : CBLDocument = row.document
-            
-            var item : Item = Item(forDocument: doc)
-            
-            var val : Int = (item.amount != nil ? item.amount! : 0).integerValue
-            
-            self.updateDataValue(item.category, value: val)
+        if(rows.count > 0) {
+            for i in 0...rows.count-1 {
+                var row = rows.rowAtIndex(i)
+                
+                var doc : CBLDocument = row.document
+                
+                var item : Item = Item(forDocument: doc)
+                
+                var val : Int = (item.amount != nil ? item.amount! : 0).integerValue
+                
+                self.updateDataValue(item.category, value: val)
 
+            }
         }
         
         self.tableView.reloadData()

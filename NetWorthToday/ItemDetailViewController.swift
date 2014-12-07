@@ -48,12 +48,15 @@ class ItemDetailViewController: UIViewController, UIPickerViewDelegate {
             self.nameTextField.text = self.item.name
             self.valueTextField.text = self.item.amount?.description
             
+            var index = 0
             if(self.itemType! == ItemType.Asset) {
-                self.categoryPicker.selectRow(AssetCategory.getIndexFor(self.item.category!), inComponent: 0, animated: false)
+                index = AssetCategory.getIndexFor(self.item.category!)
             } else {
-                self.categoryPicker.selectRow(LiabilityCategory.getIndexFor(self.item.category!), inComponent: 0, animated: false)
+                index = LiabilityCategory.getIndexFor(self.item.category!)
             }
             
+            self.categoryPicker.selectRow(index, inComponent: 0, animated: false)
+            self.selectedCategoryIndex = index
         }
         
         self.nameTextField.becomeFirstResponder()

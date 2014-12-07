@@ -107,19 +107,21 @@ class MemberOverviewViewController: UIViewController {
     func displayData(rows : CBLQueryEnumerator) {
         var total = 0
         
-        for i in 1...rows.count-1 {
-            var row = rows.rowAtIndex(i)
-            
-            var doc : CBLDocument = row.document
-            
-            var item : Item = Item(forDocument: doc)
-            
-            if(ItemType(rawValue: item.itemType!) == ItemType.Asset) {
-                total = total + (item.amount != nil ? item.amount! : 0).integerValue
-            } else {
-                total = total - (item.amount != nil ? item.amount! : 0).integerValue
-            }
+        if(rows.count > 0) {
+            for i in 0...rows.count-1 {
+                var row = rows.rowAtIndex(i)
+                
+                var doc : CBLDocument = row.document
+                
+                var item : Item = Item(forDocument: doc)
+                
+                if(ItemType(rawValue: item.itemType!) == ItemType.Asset) {
+                    total = total + (item.amount != nil ? item.amount! : 0).integerValue
+                } else {
+                    total = total - (item.amount != nil ? item.amount! : 0).integerValue
+                }
 
+            }
         }
         
         self.totalTextField.text = currencyFormatter.stringFromNumber(total)
