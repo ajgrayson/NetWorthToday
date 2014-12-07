@@ -1,5 +1,5 @@
 //
-//  LiabilityTableViewController.swift
+//  ItemGroupTableViewViewControllerTableViewController.swift
 //  NetWorthToday
 //
 //  Created by Johnathan Grayson on 6/12/14.
@@ -8,8 +8,10 @@
 
 import UIKit
 
-class LiabilityTableViewController: UITableViewController {
+class ItemCategoryTableViewController: UITableViewController {
 
+    var itemType : ItemType!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -36,6 +38,9 @@ class LiabilityTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
+        if(self.itemType! == ItemType.Asset) {
+            return AssetCategory.getAll().count
+        }
         return LiabilityCategory.getAll().count
     }
 
@@ -43,8 +48,13 @@ class LiabilityTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("ItemGroupCell", forIndexPath: indexPath) as UITableViewCell
 
         // Configure the cell...
-        cell.textLabel?.text = LiabilityCategory.getAll()[indexPath.item].name
-
+        
+        if(self.itemType! == ItemType.Asset) {
+            cell.textLabel?.text = AssetCategory.getAll()[indexPath.item].name
+        } else {
+            cell.textLabel?.text = LiabilityCategory.getAll()[indexPath.item].name
+        }
+        
         return cell
     }
 

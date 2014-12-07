@@ -10,7 +10,15 @@ import UIKit
 
 class ItemListTableViewController: UITableViewController {
 
-    var itemType : ItemType!
+    var viewItemType : ItemType!
+    
+    var database: CBLDatabase!
+    
+    var dataSource: CBLUITableSource!
+    
+    let assetViewName = "Assets"
+    
+    let liabilityViewName = "Liability"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,16 +31,43 @@ class ItemListTableViewController: UITableViewController {
     }
     
     override func viewDidAppear(animated: Bool) {
-        if(self.itemType == ItemType.Asset) {
+        super.viewDidAppear(animated)
+        
+        if(self.viewItemType == ItemType.Asset) {
             self.navigationItem.title = "Assets"
         } else {
             self.navigationItem.title = "Liabilities"
         }
+        
+        setupDataSource()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier != "editItem" && segue.identifier != "addItem") {
+            return
+        }
+        
+        var nvc : UINavigationController = segue.destinationViewController as UINavigationController
+        var vc : ItemDetailViewController = nvc.topViewController as ItemDetailViewController
+        
+        vc.itemType = self.viewItemType
+        
+        if(segue.identifier == "editItem") {
+            
+            var indexPath : NSIndexPath = self.tableView.indexPathForSelectedRow()!
+            
+            var row = self.dataSource.rowAtIndexPath(indexPath)
+            
+            var doc : CBLDocument = row.document
+            
+            vc.item = Item(forDocument: doc)
+            
+        }
     }
 
     // MARK: - Table view data source
@@ -40,68 +75,108 @@ class ItemListTableViewController: UITableViewController {
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
-        return 0
+        return 1
     }
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
+        if (self.dataSource?.rows != nil) {
+            return self.dataSource.rows.count
+        }
         return 0
     }
-
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell
-
-        // Configure the cell...
-
+        var cell : UITableViewCell = tableView.dequeueReusableCellWithIdentifier("ItemCell", forIndexPath: indexPath) as UITableViewCell
+        
+        var row : CBLQueryRow = self.dataSource.rowAtIndexPath(indexPath)
+        var doc : CBLDocument = row.document
+        
+        var item : Item = Item(forDocument: doc)
+        
+        cell.textLabel!.text = item.name;
+        
         return cell
     }
-    */
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
+    func setupDataSource() {
+        
+        self.database = appDelegate.database
+        
+        setupDatabaseViews()
+        
+        if self.dataSource == nil {
+            self.dataSource = CBLUITableSource()
+            
+            let query = database.viewNamed(getViewName()).createQuery().asLiveQuery();
+            query.descending = true
+            
+            self.dataSource.query = query
+            self.dataSource.labelProperty = "name"    // Document property to display in the cell label
+        }
+        
+        self.dataSource.reloadFromQuery()
+        
+        self.tableView.reloadData()
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    func setupDatabaseViews() {
+        self.database.viewNamed(assetViewName).setMapBlock({
+            (doc, emit) in
+            
+                let type : String? = doc["type"] as String?
+                if (type == "item") {
+                    
+                    let itemType : String? = doc["itemType"] as String?
+                    if (ItemType(rawValue: itemType!) == ItemType.Asset) {
+                        
+                        if let nameObj: AnyObject = doc["name"] {
+                            
+                            if let name = nameObj as? String {
+                                emit(name, doc)
+                            }
+                            
+                        }
+                        
+                    }
+                    
+                }
+            
+            }, version: "2")
+        
+        self.database.viewNamed(liabilityViewName).setMapBlock({
+            (doc, emit) in
+            
+                let type : String? = doc["type"] as String?
+                if (type == "item") {
+                    
+                    let itemType : String? = doc["itemType"] as String?
+                    if (ItemType(rawValue: itemType!) == ItemType.Liability) {
+                        
+                        if let nameObj: AnyObject = doc["name"] {
+                            
+                            if let name = nameObj as? String {
+                                emit(name, doc)
+                            }
+                            
+                        }
+                        
+                    }
+                    
+                }
+            
+            }, version: "2")
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
+    
+    func getViewName() -> String {
+        if(self.viewItemType == ItemType.Asset) {
+            return assetViewName
+        } else {
+            return liabilityViewName
+        }
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
+    
+    var appDelegate : AppDelegate {
+        return UIApplication.sharedApplication().delegate as AppDelegate
     }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -8,10 +8,17 @@
 
 import Foundation
 
-enum ItemType {
+enum ItemType : String {
     
-    case Asset
+    case Asset = "ASSET"
     
-    case Liability
+    case Liability = "LIABILITY"
+    
+    var description : String {
+        switch self {
+        case .Asset: return "Asset"
+        case .Liability: return "Liability"
+        }
+    }
     
 }

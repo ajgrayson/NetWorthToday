@@ -12,7 +12,15 @@ class MemberOverviewViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view, typically from a nib.
+        
+        var avc : ItemCategoryTableViewController = self.childViewControllers[0] as ItemCategoryTableViewController
+        avc.itemType = ItemType.Asset
+        
+        var lvc : ItemCategoryTableViewController = self.childViewControllers[1] as ItemCategoryTableViewController
+        lvc.itemType = ItemType.Liability
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,9 +37,9 @@ class MemberOverviewViewController: UIViewController {
         var lvc : ItemListTableViewController = nvc.topViewController as ItemListTableViewController
         
         if(segue.identifier == "manageAssets") {
-            lvc.itemType = ItemType.Asset
+            lvc.viewItemType = ItemType.Asset
         } else {
-            lvc.itemType = ItemType.Liability
+            lvc.viewItemType = ItemType.Liability
         }
     }
 
