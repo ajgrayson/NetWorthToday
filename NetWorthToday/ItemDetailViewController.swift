@@ -21,18 +21,11 @@ class ItemDetailViewController: UIViewController, UIPickerViewDelegate {
     
     var selectedCategoryIndex : Int = 0
     
-    //let currencyFormatter = NSNumberFormatter()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.categoryPicker.delegate = self;
-        
-        //self.valueTextField.addTarget(self, action: "amountTextFieldDidChange:", forControlEvents: UIControlEvents.EditingChanged)
-        
-        //currencyFormatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
-        //currencyFormatter.currencyCode = NSLocale.currentLocale().displayNameForKey(NSLocaleCurrencySymbol, value: NSLocaleCurrencyCode)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -85,14 +78,14 @@ class ItemDetailViewController: UIViewController, UIPickerViewDelegate {
             }
             
             // set the name
-            self.item?.name = self.nameTextField.text
-            self.item?.amount = (self.valueTextField.text as NSString).floatValue
+            self.item!.name = self.nameTextField.text
+            self.item!.amount = (self.valueTextField.text as NSString).floatValue
             
             // set the category
             if(self.itemType! == ItemType.Asset) {
-                self.item?.category = AssetCategory.getAll()[self.selectedCategoryIndex].value
+                self.item!.category = AssetCategory.getAll()[self.selectedCategoryIndex].value
             } else {
-                self.item?.category = LiabilityCategory.getAll()[self.selectedCategoryIndex].value
+                self.item!.category = LiabilityCategory.getAll()[self.selectedCategoryIndex].value
             }
         }
     }
@@ -116,30 +109,7 @@ class ItemDetailViewController: UIViewController, UIPickerViewDelegate {
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.selectedCategoryIndex = row
     }
-    
-    // MARK :- Text Fields
-//    
-//    func amountTextFieldDidChange(textField: UITextField) {
-//        updateAmountTextField(self.valueTextField.text)
-//    }
-//    
-//    func updateAmountTextField(amount : String?) {
-//        if(amount == nil) {
-//            return
-//        }
-//        
-//        var text = self.cleanAmount(amount)
-//        
-//        self.valueTextField.text = currencyFormatter.stringFromNumber((text as NSString).doubleValue)
-//    }
-//    
-//    func cleanAmount(text : String?) -> String {
-//        if(text == nil) {
-//            return ""
-//        }
-//        return text!.stringByReplacingOccurrencesOfString(currencyFormatter.currencySymbol!, withString: "").stringByReplacingOccurrencesOfString(currencyFormatter.groupingSeparator, withString: "").stringByReplacingOccurrencesOfString(currencyFormatter.decimalSeparator!, withString: "")
-//    }
-    
+        
     // MARK : - App Delegate
     
     var appDelegate : AppDelegate {

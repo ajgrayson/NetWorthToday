@@ -14,8 +14,6 @@ class MemberOverviewViewController: UIViewController {
     
     var liveQuery : CBLLiveQuery!
     
-    let currencyFormatter = NSNumberFormatter()
-    
     @IBOutlet weak var totalTextField: UILabel!
     
     override func viewDidLoad() {
@@ -28,10 +26,6 @@ class MemberOverviewViewController: UIViewController {
         
         var lvc : ItemCategoryTableViewController = self.childViewControllers[1] as ItemCategoryTableViewController
         lvc.itemType = ItemType.Liability
-        
-        currencyFormatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
-        currencyFormatter.maximumFractionDigits = 0
-        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -67,13 +61,13 @@ class MemberOverviewViewController: UIViewController {
     // MARK : - DataSource
     
     func setupDataSource() {
+        self.database = appDelegate.database
         
-        setupDatabase()
+        DatabaseViews.createItemsView(self.database)
         
-        self.liveQuery = database.viewNamed("items").createQuery().asLiveQuery();
+        self.liveQuery = database.viewNamed(DatabaseViews.ViewName_Items).createQuery().asLiveQuery();
         self.liveQuery.descending = false
         self.liveQuery.addObserver(self, forKeyPath: "rows", options: nil, context: nil)
-        
     }
     
     override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject,
@@ -81,28 +75,6 @@ class MemberOverviewViewController: UIViewController {
             if object as? NSObject == liveQuery {
                 self.displayData(liveQuery.rows)
             }
-    }
-    
-    func setupDatabase() {
-        self.database = appDelegate.database
-        
-        self.database.viewNamed("items").setMapBlock({
-            (doc, emit) in
-            
-                let type : String? = doc["type"] as String?
-                if (type == "item") {
-                    
-                    if let nameObj: AnyObject = doc["name"] {
-                        
-                        if let name = nameObj as? String {
-                            emit(name, doc)
-                        }
-                        
-                    }
-                    
-                }
-            
-            }, version: "2")
     }
     
     func displayData(rows : CBLQueryEnumerator) {
@@ -125,7 +97,7 @@ class MemberOverviewViewController: UIViewController {
             }
         }
         
-        self.totalTextField.text = currencyFormatter.stringFromNumber(total)
+        self.totalTextField.text = Formatting.formatMoney(total)
     }
     
     var appDelegate : AppDelegate {

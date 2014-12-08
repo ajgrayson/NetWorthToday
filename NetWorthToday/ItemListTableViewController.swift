@@ -18,29 +18,14 @@ import UIKit
     
     var liveQuery: CBLLiveQuery!
     
-    let assetViewName = "Assets"
-    
-    let liabilityViewName = "Liability"
-    
-    let currencyFormatter = NSNumberFormatter()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
         if(self.viewItemType == ItemType.Asset) {
             self.navigationItem.title = "Assets"
         } else {
             self.navigationItem.title = "Liabilities"
         }
-        
-        currencyFormatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
-        currencyFormatter.maximumFractionDigits = 0
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -119,7 +104,7 @@ import UIKit
         
         cell.nameTextField!.text = item.name;
         cell.categoryTextField!.text = self.getCategoryDescription(item.category)
-        cell.amountTextField!.text = item.amount != nil ? currencyFormatter.stringFromNumber(item.amount!) : "You're broke"
+        cell.amountTextField!.text = Formatting.formatMoney(item.amount)
         
         return cell
     }
@@ -146,13 +131,13 @@ import UIKit
     }
     
     func setupDataSource() {
-        
-        setupDatabase()
+        self.database = appDelegate.database
+        DatabaseViews.createAssetsAndLiabilityViews(self.database)
         
         if self.dataSource == nil {
             self.dataSource = CBLUITableSource()
             
-            self.liveQuery = database.viewNamed(getViewName()).createQuery().asLiveQuery();
+            self.liveQuery = database.viewNamed(DatabaseViews.getViewNameForItemType(self.viewItemType)).createQuery().asLiveQuery();
             self.liveQuery.descending = false
             self.liveQuery.addObserver(self, forKeyPath: "rows", options: nil, context: nil)
             
@@ -167,64 +152,6 @@ import UIKit
             if object as? NSObject == liveQuery {
                 self.tableView.reloadData()
             }
-    }
-    
-    func setupDatabase() {
-        self.database = appDelegate.database
-        
-        self.database.viewNamed(assetViewName).setMapBlock({
-            (doc, emit) in
-            
-                let type : String? = doc["type"] as String?
-                if (type == "item") {
-                    
-                    let itemType : String? = doc["itemType"] as String?
-                    if (ItemType(rawValue: itemType!) == ItemType.Asset) {
-                        
-                        if let nameObj: AnyObject = doc["name"] {
-                            
-                            if let name = nameObj as? String {
-                                emit(name, doc)
-                            }
-                            
-                        }
-                        
-                    }
-                    
-                }
-            
-            }, version: "2")
-        
-        self.database.viewNamed(liabilityViewName).setMapBlock({
-            (doc, emit) in
-            
-                let type : String? = doc["type"] as String?
-                if (type == "item") {
-                    
-                    let itemType : String? = doc["itemType"] as String?
-                    if (ItemType(rawValue: itemType!) == ItemType.Liability) {
-                        
-                        if let nameObj: AnyObject = doc["name"] {
-                            
-                            if let name = nameObj as? String {
-                                emit(name, doc)
-                            }
-                            
-                        }
-                        
-                    }
-                    
-                }
-            
-            }, version: "2")
-    }
-    
-    func getViewName() -> String {
-        if(self.viewItemType == ItemType.Asset) {
-            return assetViewName
-        } else {
-            return liabilityViewName
-        }
     }
     
     func saveItem(item: Item!) {
