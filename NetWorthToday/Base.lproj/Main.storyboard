@@ -5,7 +5,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Net Worth Overview-->
+        <!--Overview-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MemberOverviewViewController" customModule="NetWorthToday" customModuleProvider="target" sceneMemberID="viewController">
@@ -17,12 +17,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w0G-Wr-Gji">
-                                <rect key="frame" x="492" y="144" width="92" height="30"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w0G-Wr-Gji">
+                                <rect key="frame" x="503" y="151" width="92" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
-                                <state key="normal" title="Manage">
+                                <state key="normal" title="manage">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -31,13 +31,13 @@
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Assets" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gn9-fK-02T">
                                 <rect key="frame" x="16" y="155" width="72" height="21"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Liabilities" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GSY-LT-cBP">
                                 <rect key="frame" x="16" y="333" width="114" height="21"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -47,18 +47,6 @@
                                     <segue destination="RxQ-LM-kq4" kind="embed" id="eFK-Ad-PsP"/>
                                 </connections>
                             </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bsJ-fh-vG0">
-                                <rect key="frame" x="492" y="324" width="92" height="30"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
-                                <state key="normal" title="Manage">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="5ZG-vm-at5" kind="show" identifier="manageLiabilities" id="awI-Rr-roc"/>
-                                </connections>
-                            </button>
                             <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qt9-aD-z2S">
                                 <rect key="frame" x="16" y="362" width="568" height="128"/>
                                 <connections>
@@ -66,13 +54,23 @@
                                 </connections>
                             </containerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="$000,000,000.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AgU-JL-LnL">
-                                <rect key="frame" x="16" y="88" width="568" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <rect key="frame" x="16" y="95" width="568" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bsJ-fh-vG0">
+                                <rect key="frame" x="503" y="329" width="92" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                                <state key="normal" title="manage"/>
+                                <connections>
+                                    <segue destination="5ZG-vm-at5" kind="show" identifier="manageLiabilities" id="awI-Rr-roc"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="UaS-sr-Zsi" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="0i0-M8-Xzi"/>
                             <constraint firstItem="qt9-aD-z2S" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="4lj-nm-hb1"/>
@@ -88,7 +86,7 @@
                             <constraint firstItem="qt9-aD-z2S" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="zcw-rA-hQH"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Net Worth Overview" id="Ig4-hL-LfM"/>
+                    <navigationItem key="navigationItem" title="Overview" id="Ig4-hL-LfM"/>
                     <connections>
                         <outlet property="totalTextField" destination="AgU-JL-LnL" id="4JP-MT-i7e"/>
                     </connections>
@@ -164,7 +162,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Asset name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cgz-Cp-HV5">
-                                            <rect key="frame" x="8" y="7" width="174" height="21"/>
+                                            <rect key="frame" x="14" y="7" width="174" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -176,7 +174,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Fixed" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Es7-9L-fZg">
-                                            <rect key="frame" x="8" y="24" width="174" height="21"/>
+                                            <rect key="frame" x="14" y="26" width="174" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -185,23 +183,31 @@
                                     <constraints>
                                         <constraint firstAttribute="centerX" secondItem="mUF-4f-wUG" secondAttribute="centerX" constant="-213" id="0Z3-jf-5ZZ"/>
                                         <constraint firstItem="Es7-9L-fZg" firstAttribute="leading" secondItem="c7A-Ul-8Pv" secondAttribute="leadingMargin" id="36t-mA-cN9"/>
+                                        <constraint firstItem="Es7-9L-fZg" firstAttribute="top" secondItem="c7A-Ul-8Pv" secondAttribute="topMargin" constant="18" id="CPE-Hg-nWe"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="mUF-4f-wUG" secondAttribute="trailing" constant="-8" id="FNU-gN-xPC"/>
-                                        <constraint firstItem="Es7-9L-fZg" firstAttribute="top" secondItem="cgz-Cp-HV5" secondAttribute="bottom" constant="-4" id="Kpb-ST-AAP"/>
+                                        <constraint firstItem="Es7-9L-fZg" firstAttribute="top" secondItem="cgz-Cp-HV5" secondAttribute="bottom" constant="-20" id="Kpb-ST-AAP"/>
+                                        <constraint firstItem="Es7-9L-fZg" firstAttribute="leading" secondItem="c7A-Ul-8Pv" secondAttribute="leadingMargin" constant="6" id="PSg-Ow-xEI"/>
                                         <constraint firstItem="cgz-Cp-HV5" firstAttribute="leading" secondItem="c7A-Ul-8Pv" secondAttribute="leadingMargin" id="QOr-zN-D87"/>
                                         <constraint firstItem="mUF-4f-wUG" firstAttribute="top" secondItem="c7A-Ul-8Pv" secondAttribute="topMargin" constant="6" id="XrH-in-SaB"/>
                                         <constraint firstItem="cgz-Cp-HV5" firstAttribute="top" secondItem="c7A-Ul-8Pv" secondAttribute="topMargin" constant="-1" id="bQ4-V8-Pti"/>
                                         <constraint firstItem="Es7-9L-fZg" firstAttribute="top" secondItem="cgz-Cp-HV5" secondAttribute="bottom" constant="-4" id="hWO-p5-p1l"/>
+                                        <constraint firstItem="cgz-Cp-HV5" firstAttribute="leading" secondItem="c7A-Ul-8Pv" secondAttribute="leadingMargin" constant="6" id="itt-aA-RfM"/>
                                         <constraint firstItem="Es7-9L-fZg" firstAttribute="leading" secondItem="c7A-Ul-8Pv" secondAttribute="leadingMargin" id="nX2-Ps-H1d"/>
                                         <constraint firstItem="mUF-4f-wUG" firstAttribute="leading" secondItem="Es7-9L-fZg" secondAttribute="trailing" constant="8" id="nbi-7u-jdl"/>
                                         <constraint firstItem="cgz-Cp-HV5" firstAttribute="leading" secondItem="c7A-Ul-8Pv" secondAttribute="leadingMargin" id="r5g-fx-ClA"/>
                                         <constraint firstItem="mUF-4f-wUG" firstAttribute="leading" secondItem="cgz-Cp-HV5" secondAttribute="trailing" constant="8" id="t8k-HY-UFo"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="mUF-4f-wUG" secondAttribute="trailing" constant="-3" id="tef-UH-BVs"/>
+                                        <constraint firstItem="Es7-9L-fZg" firstAttribute="leading" secondItem="c7A-Ul-8Pv" secondAttribute="leadingMargin" constant="5" id="uSf-Fe-rhx"/>
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
                                             <exclude reference="QOr-zN-D87"/>
+                                            <exclude reference="r5g-fx-ClA"/>
+                                            <exclude reference="36t-mA-cN9"/>
+                                            <exclude reference="Kpb-ST-AAP"/>
                                             <exclude reference="hWO-p5-p1l"/>
                                             <exclude reference="nX2-Ps-H1d"/>
+                                            <exclude reference="uSf-Fe-rhx"/>
                                             <exclude reference="0Z3-jf-5ZZ"/>
                                             <exclude reference="FNU-gN-xPC"/>
                                             <exclude reference="nbi-7u-jdl"/>

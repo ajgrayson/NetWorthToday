@@ -22,6 +22,8 @@ import UIKit
     
     let liabilityViewName = "Liability"
     
+    let currencyFormatter = NSNumberFormatter()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -36,6 +38,9 @@ import UIKit
         } else {
             self.navigationItem.title = "Liabilities"
         }
+        
+        currencyFormatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+        currencyFormatter.maximumFractionDigits = 0
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -114,7 +119,7 @@ import UIKit
         
         cell.nameTextField!.text = item.name;
         cell.categoryTextField!.text = self.getCategoryDescription(item.category)
-        cell.amountTextField!.text = item.amount?.description
+        cell.amountTextField!.text = item.amount != nil ? currencyFormatter.stringFromNumber(item.amount!) : "You're broke"
         
         return cell
     }

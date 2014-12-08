@@ -32,6 +32,7 @@ class ItemCategoryTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         currencyFormatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+        currencyFormatter.maximumFractionDigits = 0
     }
     
     override func viewDidAppear(animated: Bool) {

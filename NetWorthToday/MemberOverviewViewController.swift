@@ -30,6 +30,7 @@ class MemberOverviewViewController: UIViewController {
         lvc.itemType = ItemType.Liability
         
         currencyFormatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+        currencyFormatter.maximumFractionDigits = 0
         
     }
     
